@@ -13,7 +13,7 @@
 #import "ParseDataService.h"
 #import "ParseCronService.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <UITextFieldDelegate>
 
 @end
 
@@ -47,6 +47,17 @@
     
     
 }*/
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if(textField == self.userTextField) {
+        [self.passwordTextField becomeFirstResponder];
+    } else {
+        [textField resignFirstResponder];
+        [self login:self];
+    }
+    return NO;
+}
+
 - (IBAction)login:(id)sender {
     
    // self.userTextField.text = @"h";
@@ -54,28 +65,32 @@
     //comment the above hard coded credentials
     
     [ParseCronService setUserName:nil];
-   PFUser *user = [PFUser logInWithUsername:self.userTextField.text password:self.passwordTextField.text];
-    if(user != nil){
-        NSUserDefaults *userCredentials=[NSUserDefaults standardUserDefaults];
-        [userCredentials setObject:self.userTextField.text forKey:@"username"];
-        [userCredentials setObject:self.passwordTextField.text forKey:@"password"];
-        [userCredentials synchronize];
-        
-        //set user name in cron service
-        [ParseCronService setUserName:self.userTextField.text];
-        
-        //After successful login, set up the cron to run regularly to alert user with timeout todo tasks
-        [ParseCronService startCronJobForTimeOutTasks];
-        
-        ListViewController *iv=[self.storyboard instantiateViewControllerWithIdentifier:@"ListViewController"];
-        [ParseDataService getTaskListFromParseService: self.userTextField.text];
-        // iv.currentUser=self.userTextField.text;
-        [self presentViewController:iv animated:YES completion:nil];
-        
-    }else{
-        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Login Failed" message:@"Invalid Username or Password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+    self.loginButton.enabled = NO;
+    [PFUser logInWithUsernameInBackground:self.userTextField.text password:self.passwordTextField.text block:^(PFUser *user, NSError *error) {
+        if(user != nil && error == nil) {
+            NSUserDefaults *userCredentials=[NSUserDefaults standardUserDefaults];
+            [userCredentials setObject:self.userTextField.text forKey:@"username"];
+            [userCredentials setObject:self.passwordTextField.text forKey:@"password"];
+            [userCredentials synchronize];
+            
+            //set user name in cron service
+            [ParseCronService setUserName:self.userTextField.text];
+            
+            //After successful login, set up the cron to run regularly to alert user with timeout todo tasks
+            [ParseCronService startCronJobForTimeOutTasks];
+            
+            ListViewController *iv=[self.storyboard instantiateViewControllerWithIdentifier:@"ListViewController"];
+            [ParseDataService getTaskListFromParseService: self.userTextField.text];
+            // iv.currentUser=self.userTextField.text;
+            [self presentViewController:iv animated:YES completion:nil];
+            
+        } else {
+            UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Login Failed" message:@"Invalid Username or Password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            self.loginButton.enabled = YES;
+        }
+    }];
+    
     
 //    [PFUser logInWithUsernameInBackground:self.userTextField.text password:self.passwordTextField.text block:^(PFUser *user, NSError *error){
 //        if (!error)

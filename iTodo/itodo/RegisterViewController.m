@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UITextField *email;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @end
 
@@ -24,6 +25,7 @@
 
 
 -(IBAction)register:(id)sender {
+    self.registerButton.enabled = NO;
     if(!(([self.username.text isEqual:@""])||([self.password.text isEqual:@""])||([self.email.text isEqual:@""])))
     {
         NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -34,6 +36,7 @@
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"enter the Valid Mail id" message:@"Please Enter Valid Email Address." delegate:nil cancelButtonTitle:@"okay" otherButtonTitles:nil];
             [alert show];
+            self.registerButton.enabled = YES;
         }
         else{
             PFUser *newuser=[PFUser user];
@@ -55,6 +58,7 @@
                 else{
                     UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Registration Failed" message:@"Username already exist" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                     [alert show];
+                    self.registerButton.enabled = YES;
                 }
             }];
             
@@ -66,7 +70,7 @@
         
         UIAlertView *msg=[[UIAlertView alloc] initWithTitle:@"Registration Failed" message:@"Please fill all the fields" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [msg show];
-        
+        self.registerButton.enabled = YES;
     }
     
 }
@@ -104,7 +108,16 @@
 }
 
 
-
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if(textField == self.username) {
+        [self.password becomeFirstResponder];
+    } else if(textField == self.password) {
+        [self.email becomeFirstResponder];
+    } else {
+        [self register:self];
+    }
+    return NO;
+}
 
 
 - (void)viewDidLoad

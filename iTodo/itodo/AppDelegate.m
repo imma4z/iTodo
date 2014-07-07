@@ -20,7 +20,7 @@
                   clientKey:@"WzF5Vk0cn0A6Zn8RpM1byOSiBogAwxEWEybDUAog"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
   //  SingleUserTodoList *controller=[[SingleUserTodoList alloc]init];
-   
+   [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"form-bg"] forBarMetrics:UIBarMetricsDefault];
     return YES;
 }
 							

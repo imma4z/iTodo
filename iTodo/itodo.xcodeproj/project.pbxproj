@@ -30,7 +30,6 @@
 		F30B8974194141CA0069FCCE /* launch-logo@2x_2.png in Resources */ = {isa = PBXBuildFile; fileRef = F30B896F194141CA0069FCCE /* launch-logo@2x_2.png */; };
 		F30B8975194141CA0069FCCE /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = F30B8970194141CA0069FCCE /* default.png */; };
 		F30B8976194141CA0069FCCE /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F30B8971194141CA0069FCCE /* default@2x.png */; };
-		F3190F49194B2D5E00D9A471 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3190F48194B2D5E00D9A471 /* Storyboard.storyboard */; };
 		F359D5BF1943CE5E00476661 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F359D5BE1943CE5E00476661 /* Parse.framework */; };
 		F359D5C11943CE8F00476661 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F359D5C01943CE8F00476661 /* AudioToolbox.framework */; };
 		F359D5C31943CE9A00476661 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F359D5C21943CE9A00476661 /* CFNetwork.framework */; };
@@ -103,7 +102,6 @@
 		F30B896F194141CA0069FCCE /* launch-logo@2x_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch-logo@2x_2.png"; sourceTree = "<group>"; };
 		F30B8970194141CA0069FCCE /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
 		F30B8971194141CA0069FCCE /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default@2x.png"; sourceTree = "<group>"; };
-		F3190F48194B2D5E00D9A471 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 		F359D5BE1943CE5E00476661 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../../../Downloads/Parse.framework; sourceTree = "<group>"; };
 		F359D5C01943CE8F00476661 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F359D5C21943CE9A00476661 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -189,7 +187,6 @@
 		F30B8913194130420069FCCE = {
 			isa = PBXGroup;
 			children = (
-				F3190F48194B2D5E00D9A471 /* Storyboard.storyboard */,
 				F30B8925194130420069FCCE /* itodo */,
 				F30B8944194130420069FCCE /* itodoTests */,
 				F30B891E194130420069FCCE /* Frameworks */,
@@ -448,7 +445,6 @@
 				F3D127A81941D1DE0034DDDD /* Images.xcassets in Resources */,
 				F30B8972194141CA0069FCCE /* MoveButton.png in Resources */,
 				F35C2F871954F4720060906E /* Main.storyboard in Resources */,
-				F3190F49194B2D5E00D9A471 /* Storyboard.storyboard in Resources */,
 				F30B8976194141CA0069FCCE /* default@2x.png in Resources */,
 				F30B8974194141CA0069FCCE /* launch-logo@2x_2.png in Resources */,
 				F30B8973194141CA0069FCCE /* MoveButton@2x.png in Resources */,
