@@ -13,7 +13,7 @@
 @implementation ParseCronService
 
 static NSString *_currentUserName;
-static NSString* dateFormatPattern = @"yyyy-MM-dd HH:mm:ss Z";
+static NSString* dateFormatPattern = @"d LLL yyyy HH:mm";
 static NSDateFormatter *dateFormatter;
 
 +(void)setUserName:(NSString *)loggedInUserName
