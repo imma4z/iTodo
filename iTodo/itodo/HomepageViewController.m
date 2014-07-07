@@ -17,6 +17,7 @@
 
 @implementation HomepageViewController
 @synthesize username1;
+long flag1=0;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -74,7 +75,14 @@
 }
 
 - (IBAction)menuButton:(id)sender {
-    self.logoutView.hidden=NO;
+    if (flag1%2==0) {
+        self.logoutView.hidden=NO;
+    }
+    else{
+        self.logoutView.hidden=YES;
+    }
+    flag1++;
+
 }
 
 
