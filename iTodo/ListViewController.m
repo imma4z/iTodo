@@ -32,8 +32,7 @@
     NSMutableArray *today;
     NSMutableArray *tomorrow;
     NSMutableArray *nextSevenDays;
-    
-    
+    NSDateFormatter* formatter;
 }
 @synthesize currentUser;
 long flag=0;
@@ -49,6 +48,9 @@ long flag=0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"d LLL yyyy HH:mm"];
     
     NSUserDefaults *userCredentials=[NSUserDefaults standardUserDefaults];
     currentUser=[userCredentials objectForKey:@"username"];
@@ -268,6 +270,16 @@ long flag=0;
     UIView *bgColorView = [[UIView alloc] init];
   //  bgColorView.backgroundColor = [UIColor redColor];
     [cell setSelectedBackgroundView:bgColorView];
+    
+    UIView* timerView = (id)[cell viewWithTag:111];
+    
+    NSString* dateString = listData[@"date"];
+    NSDate* date = [formatter dateFromString:dateString];
+    if([date compare:[NSDate date]] == NSOrderedAscending) {
+        timerView.hidden = NO;
+    } else {
+        timerView.hidden = YES;
+    }
     
     return cell;
 }
